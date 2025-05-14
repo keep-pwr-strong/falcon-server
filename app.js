@@ -12,8 +12,8 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/generate-keypair', generateKeypair);
-app.post('/generate-random-keypair', generateRandomKeypair);
+app.get('/generateKeypair', generateKeypair);
+app.get('/generateRandomKeypair', generateRandomKeypair);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);

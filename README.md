@@ -33,9 +33,7 @@ The server will start running on `http://localhost:3000`
 Generate a Falcon keypair using a provided BIP39 mnemonic seed.
 
 ```bash
-curl -X POST http://localhost:3000/generate-keypair \
-  -H "Content-Type: application/json" \
-  -d '{"seed": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"}'
+curl "http://localhost:3000/generateKeypair?seed=abandon%20abandon%20abandon%20abandon%20abandon%20abandon%20abandon%20abandon%20abandon%20abandon%20abandon%20about"
 ```
 
 Response:
@@ -51,12 +49,10 @@ Response:
 ```
 
 ### 2. Generate Random Keypair
-Generate a random Falcon keypair with a new BIP39 mnemonic. You can specify the word count (12, 15, 18, 21, or 24) in the request body. If not specified, it defaults to 12 words.
+Generate a random Falcon keypair with a new BIP39 mnemonic. You can specify the word count (12, 15, 18, 21, or 24) as a query parameter. If not specified, it defaults to 12 words.
 
 ```bash
-curl -X POST http://localhost:3000/generate-random-keypair \
-  -H "Content-Type: application/json" \
-  -d '{"wordCount": 12}'
+curl "http://localhost:3000/generateRandomKeypair?wordCount=12"
 ```
 
 Response:

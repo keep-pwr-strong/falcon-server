@@ -5,10 +5,11 @@ import crypto from 'crypto';
 
 export const generateKeypair = async (req, res) => {
     try {
-        const { seed } = req.body;
+        let { seed } = req.query;
         if (!seed) {
             return res.status(400).json({ error: "Seed is required" });
         }
+        seed = seed.replace(/^"|"$/g, '');
 
         let mnemonic = bip39.mnemonicToSeedSync(seed, '');
         const randomBytes = new DeterministicSecureRandom(Buffer.from(mnemonic)).nextBytes(48);
@@ -32,10 +33,7 @@ export const generateKeypair = async (req, res) => {
 
 export const generateRandomKeypair = async (req, res) => {
     try {
-        const { wordCount } = req.body;
-        if (!wordCount) {
-            return res.status(400).json({ error: "Word count is required" });
-        }
+        let wordCount = parseInt(req.query.wordCount) || 12;
 
         const entropyBytes = {
             12: 16,  // 128 bits
