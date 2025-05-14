@@ -1,0 +1,19 @@
+{
+  "name": "falcon-server",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bip39": "^3.1.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "rust-falcon": "^0.2.6"
+  }
+}
