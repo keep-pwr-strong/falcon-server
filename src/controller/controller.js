@@ -9,7 +9,11 @@ export const generateKeypair = async (req, res) => {
         if (!seed) {
             return res.status(400).json({ error: "Seed is required" });
         }
-        seed = seed.replace(/^"|"$/g, '');
+        // Validate that seed is hex data
+        if (!seed.match(/^[0-9a-fA-F]+$/)) {
+            return res.status(400).json({ error: "Seed must be hex encoded" });
+        }
+        seed = Buffer.from(seed, 'hex').toString();
 
         let mnemonic = bip39.mnemonicToSeedSync(seed, '');
         const randomBytes = new DeterministicSecureRandom(Buffer.from(mnemonic)).nextBytes(48);
